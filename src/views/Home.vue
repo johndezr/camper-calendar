@@ -19,7 +19,9 @@ const handleStationSelect = (station: Station) => {
       class="w-full md:hidden mb-4"
       @select="handleStationSelect"
     />
-    <Calendar />
+    <div class="flex flex-col">
+      <Calendar />
+    </div>
   </div>
 </template>
 

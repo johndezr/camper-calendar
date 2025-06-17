@@ -113,5 +113,6 @@ export const useCalendarStore = defineStore('calendar', () => {
     setSelectedStation,
     getBookingsForDay: (day: { date: Date }, type: 'start' | 'end') =>
       getBookingsForDay(bookingsByDate.value, day, type),
+    getCalendarDays,
   };
 });

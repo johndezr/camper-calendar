@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <main class="container mx-auto px-4">
+  <main class="container max-w-5xl mx-auto px-4">
     <router-view v-slot="{ Component, route }">
       <transition name="fade" mode="out-in">
         <keep-alive>

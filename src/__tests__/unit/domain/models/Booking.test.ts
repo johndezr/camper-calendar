@@ -27,7 +27,6 @@ describe('Booking Model', () => {
       customerName: 'John Doe',
     };
 
-    // Validar formato de fecha ISO
     expect(() => new Date(booking.startDate)).not.toThrow();
     expect(() => new Date(booking.endDate)).not.toThrow();
   });

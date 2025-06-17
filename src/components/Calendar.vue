@@ -1,6 +1,7 @@
 <template>
-  <section>
-    <div class="flex flex-col h-[calc(100vh-150px)] pb-10">
+  <section class="flex">
+    <BookingNavigation v-if="!isNotBookingsByDate" />
+    <div class="flex flex-1 flex-col pb-10 h-[calc(100vh-150px)]">
       <div
         class="flex overflow-x-auto justify-between md:grid md:grid-cols-7 border-b border-t border-gray-200"
       >
@@ -16,7 +17,7 @@
           @click="selectedDayIndex = idx"
         >
           <p class="text-xs">{{ day.dayName }}</p>
-          <p class="text-lg font-semibold">{{ day.dayNumber }}</p>
+          <p class="text-sm md:text-lg font-semibold">{{ day.dayNumber }}</p>
         </div>
       </div>
 
@@ -61,6 +62,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useCalendarStore } from '../stores/useCalendarStore';
+import BookingNavigation from './BookingNavigation.vue';
 
 const calendarStore = useCalendarStore();
 const selectedDayIndex = ref(0);

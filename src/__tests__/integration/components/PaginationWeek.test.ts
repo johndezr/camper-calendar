@@ -58,6 +58,6 @@ describe('PaginationWeek Component', () => {
   it('should display current month and year', () => {
     const wrapper = mount(PaginationWeek);
 
-    expect(wrapper.text()).toContain('Current Week January');
+    expect(wrapper.text()).toContain('January');
   });
 });

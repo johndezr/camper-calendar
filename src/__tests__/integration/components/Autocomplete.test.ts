@@ -33,19 +33,13 @@ describe('Autocomplete Component Integration', () => {
     // Wait for the query to resolve
     await wrapper.vm.$nextTick();
 
-    // Verify that getStations was called
     expect(getStations).toHaveBeenCalledTimes(1);
-
-    // Open the dropdown
     await wrapper.find('input').setValue('Station');
 
     // Wait for the debounce 300ms to finish
     await new Promise(resolve => setTimeout(resolve, 300));
     await wrapper.vm.$nextTick();
 
-    console.log(wrapper.html());
-
-    // Check if all stations are displayed
     const listItems = wrapper.findAll('li');
     expect(listItems).toHaveLength(3);
     expect(listItems[0].text()).toBe('Station A');
@@ -60,25 +54,20 @@ describe('Autocomplete Component Integration', () => {
       },
     });
 
-    // Wait for the query to resolve
     await wrapper.vm.$nextTick();
 
-    // Open the dropdown and select a station
     await wrapper.find('input').setValue('Station A');
 
-    // Wait for the debounce 300ms to finish
     await new Promise(resolve => setTimeout(resolve, 300));
     await wrapper.vm.$nextTick();
 
     await wrapper.find('li').trigger('click');
 
-    // Check if the correct event was emitted
     expect(wrapper.emitted('select')).toBeTruthy();
     expect(wrapper.emitted('select')![0][0]).toEqual(mockStations[0]);
   });
 
   it('should show loading state', async () => {
-    // Mock a delayed response
     vi.mocked(getStations).mockImplementation(
       () =>
         new Promise(resolve => {
@@ -92,11 +81,9 @@ describe('Autocomplete Component Integration', () => {
       },
     });
 
-    // Open the dropdown
     await wrapper.find('input').setValue('');
     await wrapper.vm.$nextTick();
 
-    // Check if loading state is shown
     expect(wrapper.find('.text-gray-500').text()).toBe('Loading...');
   });
 
@@ -107,14 +94,11 @@ describe('Autocomplete Component Integration', () => {
       },
     });
 
-    // Wait for the query to resolve
     await wrapper.vm.$nextTick();
 
-    // Type a non-matching search term
     await wrapper.find('input').setValue('NonExistentStation');
     await wrapper.vm.$nextTick();
 
-    // Check if no results are shown
     const listItems = wrapper.findAll('li');
     expect(listItems).toHaveLength(0);
   });
@@ -126,28 +110,21 @@ describe('Autocomplete Component Integration', () => {
       },
     });
 
-    // Wait for the query to resolve
     await wrapper.vm.$nextTick();
 
-    // Verify that getStations was called
     expect(getStations).toHaveBeenCalledTimes(1);
 
-    // Open the dropdown
     await wrapper.find('input').setValue('Station');
     await wrapper.vm.$nextTick();
 
-    // Wait for the debounce 300ms to finish
     await new Promise(resolve => setTimeout(resolve, 300));
     await wrapper.vm.$nextTick();
 
-    // Verify dropdown is open
     expect(wrapper.find('ul').exists()).toBe(true);
 
-    // Simulate click outside
     document.body.click();
     await wrapper.vm.$nextTick();
 
-    // Check if dropdown is closed
     expect(wrapper.find('ul').exists()).toBe(false);
   });
 });

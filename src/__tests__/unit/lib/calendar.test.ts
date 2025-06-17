@@ -84,7 +84,6 @@ describe('Calendar Utilities', () => {
       expect(calendarDays).toHaveLength(5); // 5 weeks
       expect(calendarDays[0]).toHaveLength(7); // 7 days per week
 
-      // Verify structure of a day object
       const firstDay = calendarDays[0][0];
       expect(firstDay).toHaveProperty('date');
       expect(firstDay).toHaveProperty('month');
@@ -123,16 +122,13 @@ describe('Calendar Utilities', () => {
     it('should group bookings by date correctly', () => {
       const groupedBookings = groupBookingsByDate(mockBookings);
 
-      // Check start date (March 20)
       expect(groupedBookings[2024][3][20]).toHaveLength(2);
-      // Check end date (March 25)
       expect(groupedBookings[2024][3][25]).toHaveLength(1);
     });
 
     it('should handle bookings spanning multiple days', () => {
       const groupedBookings = groupBookingsByDate(mockBookings);
 
-      // First booking spans March 20-25
       expect(groupedBookings[2024][3][20]).toContainEqual(mockBookings[0]);
       expect(groupedBookings[2024][3][25]).toContainEqual(mockBookings[0]);
     });
@@ -239,7 +235,11 @@ describe('Calendar Utilities', () => {
 
     it('should return start bookings for a day', () => {
       const day = {
-        date: new Date(2024, 2, 15),
+        date: {
+          getFullYear: () => 2024,
+          getMonth: () => 2,
+          getDate: () => 15,
+        },
       };
 
       const bookings = getBookingsForDay(mockBookingsByDate, day, 'start');
@@ -250,7 +250,11 @@ describe('Calendar Utilities', () => {
 
     it('should return empty array for day with no bookings', () => {
       const day = {
-        date: new Date(1884, 12, 31),
+        date: {
+          getFullYear: () => 1884,
+          getMonth: () => 12,
+          getDate: () => 31,
+        },
       };
 
       const bookings = getBookingsForDay(mockBookingsByDate, day, 'start');
