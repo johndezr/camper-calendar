@@ -22,6 +22,7 @@
                 :class="{
                   'bg-blue-50 text-blue-700': isCurrentMonth(year, month),
                 }"
+                @click="handleMonthClick(year, month - 1)"
               >
                 <span class="text-sm mr-4">{{ getMonthName(month) }}</span>
                 <span class="text-sm font-semibold text-gray-500">
@@ -61,5 +62,9 @@ const getBookingCount = (monthData: Record<number, any[]>) => {
 
 const isCurrentMonth = (year: number, month: number) => {
   return year === calendarStore.currentYear && month === calendarStore.currentMonth + 1;
+};
+
+const handleMonthClick = (year: number, month: number) => {
+  calendarStore.changeCalendarDays(year, month);
 };
 </script>

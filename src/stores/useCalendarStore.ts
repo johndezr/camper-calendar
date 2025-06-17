@@ -91,6 +91,13 @@ export const useCalendarStore = defineStore('calendar', () => {
     }
   }
 
+  function changeCalendarDays(year: number, month: number) {
+    calendarDays.value = getCalendarDays(year, month);
+    currentYear.value = year;
+    currentMonth.value = month;
+    currentWeek.value = 1;
+  }
+
   return {
     // Week state
     calendarDays,
@@ -113,6 +120,6 @@ export const useCalendarStore = defineStore('calendar', () => {
     setSelectedStation,
     getBookingsForDay: (day: { date: Date }, type: 'start' | 'end') =>
       getBookingsForDay(bookingsByDate.value, day, type),
-    getCalendarDays,
+    changeCalendarDays,
   };
 });
