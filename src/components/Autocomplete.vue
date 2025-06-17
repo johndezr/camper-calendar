@@ -78,7 +78,7 @@ const debouncedSearch = debounce((value: string) => {
 }, props.debounceTime);
 
 const handleInput = (event: Event) => {
-  const target = event.target;
+  const target = event.target as HTMLInputElement;
   debouncedSearch(target.value);
   isOpen.value = true;
 };

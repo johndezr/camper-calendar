@@ -15,9 +15,9 @@
           <p class="font-medium">Fecha de fin:</p>
           <p>{{ new Date(bookingData.endDate).toLocaleDateString() }}</p>
         </div>
-        <div v-if="dealershipData">
-          <p class="font-medium">Concesionario:</p>
-          <p>{{ dealershipData.name }}</p>
+        <div v-if="stationData">
+          <p class="font-medium">Station:</p>
+          <p>{{ stationData.name }}</p>
         </div>
       </div>
     </div>
@@ -26,14 +26,13 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { useQuery } from '@tanstack/vue-query';
-import { getBookings } from '../services/booking';
-import { getStations } from '../services/stations';
+import { getBookingById } from '../services/booking';
+import { getStationById } from '../services/stations';
 
 const route = useRoute();
 const bookingId = route.params.id;
-const router = useRouter();
 
 const goBack = () => {
   window.history.back();
@@ -46,28 +45,30 @@ const {
 } = useQuery({
   queryKey: ['booking', bookingId],
   queryFn: async () => {
-    const booking = await getBookings();
+    const booking = await getBookingById(bookingId as string);
     return booking;
   },
   enabled: !!bookingId,
 });
 
-const dealershipId = computed(() => bookingData.value?.pickupReturnStationId);
+const stationId = computed(() => bookingData.value?.pickupReturnStationId);
 const enabled = computed(() => !!bookingData.value?.pickupReturnStationId);
 
 const {
-  data: dealershipData,
-  isLoading: isDealershipLoading,
-  error: dealershipError,
+  data: stationData,
+  isLoading: isStationLoading,
+  error: stationError,
 } = useQuery({
-  queryKey: ['dealership', dealershipId],
+  queryKey: ['station', stationId],
   queryFn: async () => {
-    const stations = await getStations();
-    return stations;
+    const station = await getStationById(stationId.value as string);
+    return station;
   },
   enabled,
 });
 
-const isLoading = isBookingLoading || isDealershipLoading;
-const error = bookingError || dealershipError;
+console.log(stationData.value);
+
+const isLoading = isBookingLoading || isStationLoading;
+const error = bookingError || stationError;
 </script>

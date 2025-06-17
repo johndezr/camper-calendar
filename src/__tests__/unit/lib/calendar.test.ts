@@ -24,7 +24,7 @@ vi.mock('date-fns', () => ({
     return result;
   }),
   eachDayOfInterval: vi.fn(({ start, end }) => {
-    const days = [];
+    const days: Date[] = [];
     const current = new Date(start);
     while (current <= end) {
       days.push(new Date(current));
@@ -106,14 +106,14 @@ describe('Calendar Utilities', () => {
     const mockBookings: Booking[] = [
       {
         id: '1',
-        pickupStationId: 'station-1',
+        pickupReturnStationId: 'station-1',
         startDate: '2024-03-20',
         endDate: '2024-03-25',
         customerName: 'John Doe',
       },
       {
         id: '2',
-        pickupStationId: 'station-2',
+        pickupReturnStationId: 'station-2',
         startDate: '2024-03-20',
         endDate: '2024-03-21',
         customerName: 'Jane Smith',
@@ -224,7 +224,7 @@ describe('Calendar Utilities', () => {
           15: [
             {
               id: '1',
-              pickupStationId: 'station-1',
+              pickupReturnStationId: 'station-1',
               startDate: '2024-03-20',
               endDate: '2024-03-25',
               customerName: 'John Doe',
@@ -239,11 +239,7 @@ describe('Calendar Utilities', () => {
 
     it('should return start bookings for a day', () => {
       const day = {
-        date: {
-          getFullYear: () => 2024,
-          getMonth: () => 2,
-          getDate: () => 15,
-        },
+        date: new Date(2024, 2, 15),
       };
 
       const bookings = getBookingsForDay(mockBookingsByDate, day, 'start');
@@ -254,11 +250,7 @@ describe('Calendar Utilities', () => {
 
     it('should return empty array for day with no bookings', () => {
       const day = {
-        date: {
-          getFullYear: () => 1884,
-          getMonth: () => 12,
-          getDate: () => 31,
-        },
+        date: new Date(1884, 12, 31),
       };
 
       const bookings = getBookingsForDay(mockBookingsByDate, day, 'start');

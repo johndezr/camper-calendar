@@ -5,14 +5,14 @@ describe('Booking Model', () => {
   it('should have all required properties', () => {
     const booking: Booking = {
       id: '1',
-      pickupStationId: 'station-1',
+      pickupReturnStationId: 'station-1',
       startDate: '2024-03-20',
       endDate: '2024-03-25',
       customerName: 'John Doe',
     };
 
     expect(booking).toHaveProperty('id');
-    expect(booking).toHaveProperty('pickupStationId');
+    expect(booking).toHaveProperty('pickupReturnStationId');
     expect(booking).toHaveProperty('startDate');
     expect(booking).toHaveProperty('endDate');
     expect(booking).toHaveProperty('customerName');
@@ -21,7 +21,7 @@ describe('Booking Model', () => {
   it('should have valid date format', () => {
     const booking: Booking = {
       id: '1',
-      pickupStationId: 'station-1',
+      pickupReturnStationId: 'station-1',
       startDate: '2024-03-20',
       endDate: '2024-03-25',
       customerName: 'John Doe',
@@ -35,7 +35,7 @@ describe('Booking Model', () => {
   it('should have end date after start date', () => {
     const booking: Booking = {
       id: '1',
-      pickupStationId: 'station-1',
+      pickupReturnStationId: 'station-1',
       startDate: '2024-03-20',
       endDate: '2024-03-25',
       customerName: 'John Doe',

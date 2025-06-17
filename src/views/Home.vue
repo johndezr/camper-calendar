@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import Calendar from '../components/Calendar.vue';
-import Autocomplete from '../components/Autocomplete.vue';
-import { useCalendarStore } from '../stores/useCalendarStore';
+import Calendar from '@/components/Calendar.vue';
+import Autocomplete from '@/components/Autocomplete.vue';
+import { useCalendarStore } from '@/stores/useCalendarStore';
+import type { Station } from '@/domain/models/Station';
 
 const calendarStore = useCalendarStore();
 
-const handleStationSelect = (station: any) => {
+const handleStationSelect = (station: Station) => {
   calendarStore.setSelectedStation(station);
 };
 </script>

@@ -11,7 +11,7 @@ import {
 } from 'date-fns';
 import type { Booking } from '../domain/models/Booking';
 
-type BookingsByDate = {
+export type BookingsByDate = {
   [year: number]: {
     [month: number]: {
       [day: number]: Booking[];
@@ -123,7 +123,7 @@ export function calculatePrevWeek(currentWeek: number, currentMonth: number, cur
 
 export function getBookingsForDay(
   bookingsByDate: BookingsByDate | undefined,
-  day: any,
+  day: { date: Date },
   type: 'start' | 'end'
 ) {
   if (!bookingsByDate) return [];

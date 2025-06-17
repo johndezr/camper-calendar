@@ -19,7 +19,7 @@ describe('Station Model', () => {
   it('should be able to have bookings', () => {
     const booking: Booking = {
       id: '1',
-      pickupStationId: 'station-1',
+      pickupReturnStationId: 'station-1',
       startDate: '2024-03-20',
       endDate: '2024-03-25',
       customerName: 'John Doe',

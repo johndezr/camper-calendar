@@ -1,6 +1,6 @@
 export interface Booking {
   id: string;
-  pickupStationId: string;
+  pickupReturnStationId: string;
   startDate: string;
   endDate: string;
   customerName: string;

@@ -10,6 +10,7 @@ import {
   groupBookingsByDate,
 } from '../lib/calendar';
 import type { Station } from '../domain/models/Station';
+import type { Booking } from '../domain/models/Booking';
 
 export const useCalendarStore = defineStore('calendar', () => {
   // Week state
@@ -79,12 +80,14 @@ export const useCalendarStore = defineStore('calendar', () => {
   }
 
   // Station actions
-  function setSelectedStation(station: Station | null) {
+  function setSelectedStation(station: Station) {
     selectedStation.value = station;
     if (station?.bookings) {
-      selectedStation.value!.bookings = groupBookingsByDate(station.bookings);
+      selectedStation.value.bookings = groupBookingsByDate(
+        station.bookings
+      ) as unknown as Booking[];
     } else {
-      selectedStation.value!.bookings = {};
+      selectedStation.value.bookings = [];
     }
   }
 
@@ -109,6 +112,6 @@ export const useCalendarStore = defineStore('calendar', () => {
     goToCurrentWeek,
     setSelectedStation,
     getBookingsForDay: (day: Date, type: 'start' | 'end') =>
-      getBookingsForDay(bookingsByDate.value, day, type),
+      getBookingsForDay(bookingsByDate.value, { date: day }, type),
   };
 });
