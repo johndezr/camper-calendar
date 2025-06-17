@@ -7,7 +7,7 @@
         <div
           v-for="(day, idx) in calendarStore.currentWeekDays"
           :key="day.dayNumber"
-          class="w-full text-center py-2 font-semibold border-r border-l border-gray-200 cursor-pointer md:cursor-default"
+          class="w-full text-center py-2 border-r border-l border-gray-200 cursor-pointer md:cursor-default"
           :class="
             selectedDayIndex === idx
               ? 'bg-blue-100 text-blue-700 md:bg-transparent md:text-black'
@@ -16,7 +16,7 @@
           @click="selectedDayIndex = idx"
         >
           <p class="text-xs">{{ day.dayName }}</p>
-          <p class="text-lg">{{ day.dayNumber }}</p>
+          <p class="text-lg font-semibold">{{ day.dayNumber }}</p>
         </div>
       </div>
 

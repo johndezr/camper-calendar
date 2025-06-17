@@ -111,7 +111,7 @@ export const useCalendarStore = defineStore('calendar', () => {
     nextWeek,
     goToCurrentWeek,
     setSelectedStation,
-    getBookingsForDay: (day: Date, type: 'start' | 'end') =>
-      getBookingsForDay(bookingsByDate.value, { date: day }, type),
+    getBookingsForDay: (day: { date: Date }, type: 'start' | 'end') =>
+      getBookingsForDay(bookingsByDate.value, day, type),
   };
 });
