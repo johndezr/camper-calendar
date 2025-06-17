@@ -1,5 +1,7 @@
 # Camper Calendar
 
+<https://camper-calendar.vercel.app/>
+
 ## Description
 
 Camper Calendar is a modern web application built with Vue 3 and TypeScript. This application is designed to efficiently manage and organize calendars.
@@ -16,7 +18,7 @@ Camper Calendar is a modern web application built with Vue 3 and TypeScript. Thi
 
 ## Requirements
 
-- Node.js
+- Node.js (v16 or higher)
 - Yarn (Package Manager)
 
 ## Installation

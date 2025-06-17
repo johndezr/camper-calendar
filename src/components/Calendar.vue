@@ -1,5 +1,5 @@
 <template>
-  <section class="flex">
+  <section class="flex flex-col md:flex-row">
     <BookingNavigation v-if="!isNotBookingsByDate" />
     <div class="flex flex-1 flex-col pb-10 h-[calc(100vh-150px)]">
       <div
@@ -22,7 +22,7 @@
       </div>
 
       <div class="flex flex-1 overflow-auto">
-        <div class="grid grid-cols-1 md:grid-cols-7 flex-1">
+        <div class="grid grid-cols-1 md:grid-cols-7 min-h-[300px] md:min-h-full flex-1">
           <template v-for="(day, idx) in calendarStore.currentWeekDays" :key="day.dayNumber">
             <div
               v-show="isMobile ? selectedDayIndex === idx : true"

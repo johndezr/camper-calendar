@@ -40,6 +40,7 @@ function getCalendarDays(year = new Date().getFullYear(), month = new Date().get
 
 export function groupBookingsByDate(bookings: Booking[]): BookingsByDate {
   const result: BookingsByDate = {};
+  if (bookings.length === 0) return result;
 
   bookings.forEach(booking => {
     const start = parseISO(booking.startDate);

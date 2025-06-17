@@ -1,8 +1,8 @@
 <template>
   <div
-    class="max-w-xs bg-white mr-2 shadow-sm border max-h-[50%] overflow-y-auto border-gray-200 p-4 mb-10"
+    class="md:max-w-xs bg-white md:mr-2 shadow-sm border max-h-[100px] md:max-h-[300px] overflow-y-auto border-gray-200 p-4 mb-2"
   >
-    <h3 class="font-semibold mb-4 text-xs md:text-base">Booking Leyend</h3>
+    <h3 class="font-semibold mb-4 text-xs md:text-base">Booking History</h3>
     <hr />
     <div class="space-y-4">
       <template v-for="(yearData, year) in bookingsByDate" :key="year">
